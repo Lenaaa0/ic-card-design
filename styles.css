@@ -1,0 +1,242 @@
+body {
+    font-family: Arial, sans-serif; /* 设置通用字体 */
+    margin: 0; 
+    padding: 20px; 
+    display: flex; /* 使用Flexbox布局 */
+    justify-content: center;
+    align-items: center; 
+    height: 100vh; 
+    flex-direction: column;  /* 垂直排列子元素 */
+}
+
+.container {
+    padding: 60px; 
+    height: 309px; 
+    width: 500px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.student-card {
+    width: 100%; 
+    height: 100%; 
+    position: relative; 
+    transition: transform 1s; /* 翻转动画 */
+    transform-style: preserve-3d; /* 启用3D效果 */
+    cursor: pointer; /* 鼠标悬停时显示指针 */
+}
+
+.card-face {
+    position: absolute; /* 绝对定位，便于重叠 */
+    width: 100%; 
+    height: 100%; 
+    backface-visibility: hidden; /* 隐藏背面内容 */
+}
+
+@font-face {
+    font-family: puhuiti; 
+    src: url(./font/Alibaba-PuHuiTi-Medium.ttf); 
+}
+
+@font-face {
+    font-family: xingshu; 
+    src: url(./font/庞门正道粗书体.ttf); 
+}
+
+.front-face,
+.back-face {
+    display: block;
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.409); /* 阴影效果 */
+    overflow: hidden; /* 隐藏溢出的内容 */
+    border-radius: 15px; /* 圆角效果 */
+    background-color: white; 
+}
+
+.front-face {
+    transform: rotateY(0deg); /* 正面不旋转 */
+}
+
+.back-face {
+    transform: rotateY(180deg); /* 翻转180度显示背面 */
+}
+
+.student-card.is-flipped {
+    transform: rotateY(180deg); /* 翻转整个卡片 */
+}
+
+.card-face img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.header {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 40px; 
+    background-image: linear-gradient(to bottom, #6ea0de, transparent); /* 渐变背景 */
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px; 
+    z-index: 1; 
+}
+
+.logo1 {
+    position: absolute; 
+    top: 25px; 
+    left: 285px; 
+    z-index: 3;
+}
+
+.logo1 img { /* 正面Logo */
+    width: 200px; 
+    height: 56px; 
+}
+
+.card-content {
+    position: relative; 
+    z-index: 2; 
+    padding: 20px; 
+}
+
+.student-name,
+.student-type,
+.student-id {
+    position: absolute; 
+    left: 190px; 
+}
+
+.student-name {
+    top: 90px; 
+}
+
+.student-type {
+    top: 130px; 
+}
+
+.student-id {
+    top: 170px; 
+}
+
+.student-id h1,
+.student-type h1,
+.student-name h1 {
+    font-family: puhuiti; 
+    font-size: 18px; 
+    font-weight: 600; 
+    color: #333; 
+}
+
+.date-info h2 {
+    font-size: 10px; 
+    color: #333;
+}
+
+.card-content ul {
+    position: absolute; 
+    left: 20px; 
+    top: 230px; 
+    list-style-type: none; /* 去掉列表标记 */
+    padding-left: 0; 
+}
+
+.card-content li {
+    font-size: 10px; 
+    font-weight: 400; 
+}
+
+.photo-container {
+    position: absolute; 
+    left: 50px; 
+    top: 80px; 
+    z-index: 3; 
+}
+
+.photo-container img {
+    width: 110px; 
+    height: 140px; 
+    object-fit: cover; 
+}
+
+.back-face img {
+    width: 500px; 
+    height: 309px; 
+    object-fit: cover; 
+}
+
+.student-card-text {
+    font-family: xingshu; 
+    position: absolute; 
+    bottom: 10px; 
+    left: 25px; 
+    font-size: 24px; 
+    font-weight: bold; 
+    color: #0f0c65e2; 
+    z-index: 2; 
+}
+
+.logo2 {
+    position: absolute; 
+    top: 25px;
+    left: 13px; 
+}
+
+.logo2 img { 
+    width: 200px; 
+    height: 56px; 
+}
+
+.instructions {
+    text-align: center; 
+    margin-top: 20px; 
+    font-size: 10px; 
+    color: #333; 
+}
+
+.parallax-effect {
+    --maxRotate: 15; /* 最大旋转角度 */
+    aspect-ratio: 631/383; /* 设置纵横比 */
+    perspective: 1000px; /* 设置透视效果 */
+    max-height: 100%; 
+}
+
+.parallax-rotator {
+    position: relative; 
+    transition: 150ms ease-out; /* 平滑过渡 */
+    transform: rotateX(calc(var(--rotateX) * 1deg)) rotateY(calc(var(--rotateY) * 1deg)); /* 3D旋转 */
+}
+
+.parallax-shadow {
+    background: #4f6587; /* 阴影背景颜色 */
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    position: absolute;
+    filter: blur(60px); /* 模糊效果 */
+    transform: scale(1.00); /* 缩放效果 */
+    z-index: -1; /* 设置层级为最低 */
+}
+
+.parallax-highlight {
+    left: -50%; 
+    top: -50%; 
+    width: 200%;
+    height: 200%; 
+    position: absolute; 
+    background-image: radial-gradient(circle at 50%, rgba(255, 255, 255, 0.25), transparent 50%); /* 渐变效果 */
+    z-index: 100; 
+    transform: translate3d(calc(var(--rotateY) / var(--maxRotate) * -25%), calc(var(--rotateX) / var(--maxRotate) * -25%), 0px); /* 计算平移效果 */
+    transition: 150ms ease-out; /* 设置过渡效果 */
+}
+
+.scene {
+    width: 500px; 
+    height: 309px; 
+    perspective: 600px; 
+}

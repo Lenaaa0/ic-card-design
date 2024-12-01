@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>2024web设计个性化学生卡</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="parallax-effect">
+            <div class="parallax-rotator">
+                <div class="parallax-inner">
+                    <div class="scene">
+                        <div class="student-card">
+                            <div class="card-face front-face">
+                                <div class="header"></div>
+                                <div class="card-content">
+                                    <div class="student-name">
+                                        <h1>姓  名：l e n a </h1>
+                                    </div>
+                                    <div class="student-type">
+                                        <h1>类  别：本 科 生</h1>
+                                    </div>
+                                    <div class="student-id">
+                                        <h1>学  号：2022666666</h1>
+                                    </div>
+                                    
+                                    <ul>
+                                        <li>1、“ 北邮通 ” 校园卡仅限本人使用，请勿弯折、打孔以免损坏卡片；</li>
+                                        <li>2、若卡遗失，请及时通过移动端应用、网站、自助服务机等方式挂失;</li>
+                                        <li>3、解挂失请至各校区卡务中心办理，“ 北邮通 ” 网站ecard.bupt.edu.cn。</li>
+                                    </ul>
+                                    <div class="logo1">
+                                        <img src="bupt_logo.png" alt="Logo">
+                                    </div>
+                                    <div class="photo-container">
+                                        <img src="me.jpg" alt="Photo">
+                                    </div>
+                                    <div class="date-info">
+                                        <h2>20241120</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-face back-face">
+                                <img src="school_card_back.jpg" alt="Student Card Back">
+                                <div class="logo2">
+                                    <img src="bupt_logo.png" alt="Logo">
+                                </div>
+                                <div class="student-card-text">
+                                    学生卡
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="parallax-shadow"></div>
+        </div>
+    </div>
+    <div class="instructions">
+        <h1>
+            点击卡面翻转，移动鼠标有动画效果。
+        </h1>
+    </div>
+
+    <script>
+        var studentCard = document.querySelector('.student-card');
+        studentCard.addEventListener('click', function () {
+            studentCard.classList.toggle('is-flipped');
+        });
+
+        document.querySelector('.parallax-effect')?.addEventListener('mousemove', function (e) {
+            const { clientX, clientY } = e;
+            const computedStyle = getComputedStyle(this);
+            const maxRotate = computedStyle.getPropertyValue('--maxRotate');
+            const { width, height, left, top } = this.getBoundingClientRect();
+
+            const centerX = width / 2 + left;
+            const centerY = height / 2 + top;
+            const moveX = (clientX - centerX) / (width / 2);
+            const moveY = (clientY - centerY) / (height / 2);
+
+            this.style.setProperty('--rotateX', moveY * maxRotate);
+            this.style.setProperty('--rotateY', moveX * maxRotate);
+        });
+    </script>
+</body>
+</html>
